@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+
 function EditCard(){
     return (
         <div className="col-9 mx auto">
