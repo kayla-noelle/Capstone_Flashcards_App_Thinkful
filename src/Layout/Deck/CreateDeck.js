@@ -48,7 +48,7 @@ function CreateDeck(){
                     <label for="description">Description</label>
                     <textarea 
                     class="form-control" 
-                    id="exampleFormControlTextarea1" 
+                    id="description" 
                     rows="3" 
                     placeholder="Brief description of the deck"
                     onChange={handleChange}
@@ -57,7 +57,7 @@ function CreateDeck(){
                 </div>
             </form>
             <Link to="/" className="btn btn-secondary mr-3">Cancel</Link>
-            <button className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
         </div>
     
     )
