@@ -6,18 +6,18 @@ import { readDeck, deleteDeck } from "../../utils/api/index";
 function Deck(){
  const {deckId} = useParams();
  const [deck, setDeck] =useState([]);
- const {url} = useRouteMatch()
+ const {url} = useRouteMatch();
  const {id, name, description, cards} = deck;
  
-  useEffect(()=>{
-      const abortController = new AbortController()
-      async function readDeck(){
-          const readDeckFromAPI = await readDeck(deckId, abortController.signal)
-          setDeck(() =>readDeckFromAPI)
-      }
-      readDeck()
-      return () => abortController.abort()
-     },[deckId]);
+ useEffect(() => {
+    const abortController = new AbortController()
+    const deckInfo = async () => {
+        const response = await readDeck(deckId, abortController.signal)
+        setDeck(() => response)
+    }
+    deckInfo()
+    return () => abortController.abort()
+}, [deckId]);
 
      const deleteHandle= (id)=>{
         if(window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")){

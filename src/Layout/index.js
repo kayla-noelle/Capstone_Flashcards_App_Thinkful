@@ -13,7 +13,7 @@ import EditCard from "./Deck/EditCard";
 
 function Layout() {
   return (
-    <>
+    <div className="Layout">
       <Header />
       {/* TODO: Implement the screen starting here */}
       <div className="container">
@@ -42,7 +42,7 @@ function Layout() {
         </Switch>
         
       </div>
-    </>
+    </div>
   );
 }
 

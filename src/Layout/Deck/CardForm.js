@@ -1,15 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function CardForm({submitForm, changeForm, card, deckId}){
+function CardForm({handleSubmit, handleChange, card, deckId}){
     return (
-        <form>
+        <form id="cardForm" 
+        onSubmit={handleSubmit}>
             <div>
                 <label>Front</label>
                 <textarea
                 name="front"
                 value={CardForm.front}
-                onChange ={changeForm}
+                onChange ={handleChange}
                 id="front"
                 className="form-control"
                 placeholder="Front side of card"
@@ -21,7 +22,7 @@ function CardForm({submitForm, changeForm, card, deckId}){
                 <textarea
                 name="back"
                 value={card.back}
-                onChange={changeForm}
+                onChange={handleChange}
                 className="form-control"
                 id="back"
                 placeholder="Back side of card"
