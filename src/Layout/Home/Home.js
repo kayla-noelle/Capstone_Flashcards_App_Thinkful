@@ -24,7 +24,12 @@ function Home(){
                 </Link> 
         </div>
         <div className="row w-100 mx-auto flex-column align-items-center">
-             <DeckList/> 
+            {decks.map((deck)=>
+             <DeckList
+             key ={deck.id}
+             deck={deck}
+             /> 
+            )}
         </div>
         </div>
         

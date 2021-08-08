@@ -19,7 +19,7 @@ function Deck(){
     return () => abortController.abort()
 }, [deckId]);
 
-     const deleteHandle= (id)=>{
+     const deleteHandle= ()=>{
         if(window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")){
             deleteDeck(id);
         }
