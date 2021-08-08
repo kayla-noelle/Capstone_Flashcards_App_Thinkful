@@ -192,9 +192,6 @@ function Deck() {
                                         name="deleteCard" 
                                         value={card.id} 
                                         className="btn btn-danger ml-3">
-                                            <i className="fa fa-trash" 
-                                            aria-hidden="true">
-                                            </i>
                                     </button>
                                     
                                 </div>
