@@ -19,8 +19,8 @@ function EditDeck(){
         return ()=> abortController.abort()
     }, [deckId])
     
-    const changeForm = ({ target }) => {
-        editDeck({...deck, [target.name]: target.value})
+    const changeForm = (event) => {
+        editDeck({...deck, [event.target.name]: event.target.value})
     }
     
     const submitForm =async(event) => {
@@ -39,7 +39,7 @@ function EditDeck(){
                         </li>
                         {/*let users know that they are on the current page*/}
                         <li className="breadcrumb-item">
-                            <Link to="{`/decks/${deckId}">{deck.name}</Link>
+                            <Link to="{`/decks/${id}">{deck.name}</Link>
                         </li>
                         <li className="breadcrumb-item">Edit Deck</li>
                     </ol>
@@ -48,7 +48,7 @@ function EditDeck(){
                 <div className="row pl-3 pb-2">
                     <h1>Edit Deck</h1>
                 </div>
-                <form>
+                <form onSubmit={submitForm}>
                     <div class="form-group">
                         <h1>Edit Deck</h1>
                         <label for="name">Name</label>

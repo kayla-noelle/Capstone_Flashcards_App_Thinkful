@@ -1,5 +1,4 @@
  import React, {useEffect, useState} from "react";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
  import { Link, useParams } from "react-router-dom"
  import {createCard, readDeck } from "../../utils/api/index";
  import CardForm from "./CardForm";
@@ -19,8 +18,8 @@ import { findRenderedComponentWithType } from "react-dom/test-utils";
          deckInfo()
          return() => abortController.abort()
      }, [deckId])
-     const handleChange=({target})=>{
-        addCard({...card,[target.name]:target.value})
+     const handleChange=(event)=>{
+        addCard({...card,[event.target.name]:event.target.value})
      }
 
      const handleSubmit= async (event) =>{

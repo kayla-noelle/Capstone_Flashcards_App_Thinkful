@@ -6,14 +6,15 @@ function CreateDeck(){
     const history =useHistory();
     const [newDeck, setNewDeck] = useState({name:"", description:""})
 
-    const handleChange=({target})=>{
-        setNewDeck({...newDeck,[target.name]:target.value})
-    }
 
     const handleSubmit= async (event) =>{
         event.preventDefault()
         const response = await createDeck(newDeck);
         history.push(`/deck/${response.id}`);
+    }
+
+    const handleChange=(event)=>{
+        setNewDeck({...newDeck,[event.target.name]:event.target.value})
     }
     return (
    

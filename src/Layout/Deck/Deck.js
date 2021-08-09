@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useHistory, useRouteMatch } from 'react-router-dom'
-import { deleteCard, readDeck } from '../../utils/api/index.js'
-import { deleteDeck } from '../../utils/api/index.js'
+import { deleteCard, readDeck, deleteDeck } from '../../utils/api/index.js'
 
 
 // create a function that retrieves an updated deck's id,
@@ -24,21 +23,20 @@ function Deck() {
         return () => abortController.abort()
     }, [deckId])
 
-    // create a handler for the delete button
-    const deleteHandler = async () => {
-        // if the button is clicked and confirmed by the user, delete the deck using it's id
-        if (window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")) {
-          await deleteDeck(id)
-          // redirect to the home page
-          history.push('/')
-          // if the delete is not confirmed, leave the deck as is and remain on the same page
-        } else {
-            history.go(0)
-        } 
+    const deleteDeckHandle= async () =>{
+        if(window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")){
+           await deleteDeck(id);
+           history.go(0)
+        }
+    }
+    const deleteCardHandle= async () =>{
+        if(window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")){
+           await deleteCard(id);
+           history.go(0)
+        }
     }
 
-    // if there is no deck or no cards, return the following webpage
-    // that displays "loading..."
+   
     if (!deck || !cards) {
         return (
             <div className="spinner-border text-primary" role="status">
@@ -130,12 +128,9 @@ function Deck() {
 
                             {/* delete button */}
                             <button 
-                                onClick={deleteHandler} 
+                                onClick={deleteDeckHandle} 
                                 name="delete" value={id} 
-                                className="btn btn-danger ml-auto">
-                                    <i className="fa fa-trash" 
-                                    aria-hidden="true">
-                                    </i>
+                                className="btn btn-danger ml-3">
                             </button>
                        
                         </div>
@@ -181,16 +176,9 @@ function Deck() {
                                     </Link>
 
                                     <button 
-                                        onClick={async () => {
-                                            if (window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")) {
-                                                await deleteCard(card.id)
-                                                history.go(0)
-                                        } else {
-                                            history.go(0)
-                                        } 
-                                    }} 
-                                        name="deleteCard" 
-                                        value={card.id} 
+                                        onClick={deleteCardHandle} 
+                                        name="delete" 
+                                        value={id} 
                                         className="btn btn-danger ml-3">
                                     </button>
                                     
