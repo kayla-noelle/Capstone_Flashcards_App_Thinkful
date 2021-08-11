@@ -35,9 +35,9 @@ function CreateDeck(){
             <form onSubmit={handleSubmit}>
                 <div class="form-group">
                     <h1>Create Deck</h1>
-                    <label for="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input type="name" 
-                    class="form-control" 
+                    className="form-control" 
                     id="name" 
                     aria-describedby="nameHelp" 
                     placeholder="Deck Name"

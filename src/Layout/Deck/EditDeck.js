@@ -10,11 +10,11 @@ function EditDeck(){
     useEffect(()=>{
         const abortController = new AbortController()
 
-        const deckInfo =async () => {
+        const loadDeck =async () => {
             const response =await readDeck(deckId, abortController.signal)
             editDeck(() => response)
         }
-        deckInfo()
+        loadDeck()
 
         return ()=> abortController.abort()
     }, [deckId])

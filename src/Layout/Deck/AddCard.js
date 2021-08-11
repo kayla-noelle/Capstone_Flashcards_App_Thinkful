@@ -9,14 +9,12 @@
      const {deckId} =useParams()
 
      useEffect(() =>{
-         const abortController = new AbortController()
         
          const deckInfo = async () => {
-             const response = await readDeck(deckId, abortController.signal)
+             const response = await readDeck(deckId)
              setDeck(() => response)
          }
          deckInfo()
-         return() => abortController.abort()
      }, [deckId])
      const handleChange=(event)=>{
         addCard({...card,[event.target.name]:event.target.value})
@@ -25,7 +23,7 @@
      const handleSubmit= async (event) =>{
         event.preventDefault()
         addCard({...card, deckId:deckId})
-        const response = await createCard(deckId,card);
+        await createCard(deckId,card);
         addCard({front: "", back: "", deckId: ""})
     }
 
@@ -38,13 +36,11 @@
 
                     {/* a link to the home page */}
                     <li className="breadcrumb-item">
-                        <Link to={"/"}>
-                            <i className="fa fa-home" aria-hidden="true"></i>
+                        <Link to="/">
                             Home
                         </Link>
                     </li>
 
-                    {/* a link to the deck */}
                     <li className="breadcrumb-item">
                         <Link to={`/decks/${deckId}`}>
                             {deck.name}

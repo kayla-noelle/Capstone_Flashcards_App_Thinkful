@@ -15,11 +15,11 @@ function Deck() {
 
     useEffect(() => {
         const abortController = new AbortController()
-        const deckInfo = async () => {
+        const loadDeck = async () => {
             const response = await readDeck(deckId, abortController.signal)
             setDeck(() => response)
         }
-        deckInfo()
+        loadDeck()
         return () => abortController.abort()
     }, [deckId])
 
@@ -57,10 +57,7 @@ function Deck() {
                         {/* a link to the home page */}
                         <li className="breadcrumb-item">
                             <Link to={"/"}>
-                                <i 
-                                className="fa fa-home" 
-                                aria-hidden="true">
-                                </i> 
+
                                 Home
                             </Link>
                         </li>
@@ -100,9 +97,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/edit`} 
                                 className="btn btn-secondary">
-                                    <i className="fa fa-edit" 
-                                    aria-hidden="true">
-                                    </i> 
                                 Edit
                             </Link>
 
@@ -110,9 +104,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/study`} 
                                 className="btn btn-primary ml-3">
-                                    <i className="fa fa-bookmark" 
-                                    aria-hidden="true">
-                                        </i> 
                                     Study
                             </Link>
 
@@ -120,9 +111,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/cards/new`} 
                                 className="btn btn-primary ml-3">
-                                    <i className="fa fa-plus" 
-                                    aria-hidden="true">
-                                    </i> 
                                     Add Cards
                             </Link>
 
@@ -131,6 +119,7 @@ function Deck() {
                                 onClick={deleteDeckHandle} 
                                 name="delete" value={id} 
                                 className="btn btn-danger ml-3">
+                                    Delete
                             </button>
                        
                         </div>
