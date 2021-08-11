@@ -72,7 +72,8 @@ function CardList({ cards }) {
                         </p>
 
                         <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary ml-3">
-                    
+                                <i className="fa fa-plus" aria-hidden="true">
+                                </i> 
                             Add Cards
                         </Link>
                     </div>

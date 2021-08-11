@@ -8,15 +8,12 @@ function EditDeck(){
     const {deckId} =useParams()
 
     useEffect(()=>{
-        const abortController = new AbortController()
-
         const loadDeck =async () => {
-            const response =await readDeck(deckId, abortController.signal)
+            const response =await readDeck(deckId)
             editDeck(() => response)
         }
         loadDeck()
 
-        return ()=> abortController.abort()
     }, [deckId])
     
     const changeForm = (event) => {

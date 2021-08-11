@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams, useHistory, useRouteMatch } from 'react-router-dom'
-import { deleteCard, readDeck, deleteDeck } from '../../utils/api/index.js'
+import { deleteCard, readDeck } from '../../utils/api/index.js'
+import { deleteDeck } from '../../utils/api/index.js'
 
 
 // create a function that retrieves an updated deck's id,
 // fetches it's card data, and sets the deck's useState to 
 // contain it's content
-function Deck() {
+function Deck({updateDecks}) {
     const [deck, setDeck] = useState([])
     const {deckId} = useParams()
     const history = useHistory()
@@ -15,28 +16,31 @@ function Deck() {
 
     useEffect(() => {
         const abortController = new AbortController()
-        const loadDeck = async () => {
+        const deckInfo = async () => {
             const response = await readDeck(deckId, abortController.signal)
             setDeck(() => response)
         }
-        loadDeck()
+        deckInfo()
         return () => abortController.abort()
     }, [deckId])
 
-    const deleteDeckHandle= async () =>{
-        if(window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")){
-           await deleteDeck(id);
-           history.go(0)
-        }
-    }
-    const deleteCardHandle= async () =>{
-        if(window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")){
-           await deleteCard(id);
-           history.go(0)
-        }
+    // create a handler for the delete button
+    const deleteHandler = async () => {
+        // if the button is clicked and confirmed by the user, delete the deck using it's id
+        if (window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")) {
+          await deleteDeck(id)
+          // use updateDecks() to subtract it from the card deck
+          updateDecks(-1)
+          // redirect to the home page
+          history.push('/')
+          // if the delete is not confirmed, leave the deck as is and remain on the same page
+        } else {
+            history.go(0)
+        } 
     }
 
-   
+    // if there is no deck or no cards, return the following webpage
+    // that displays "loading..."
     if (!deck || !cards) {
         return (
             <div className="spinner-border text-primary" role="status">
@@ -57,7 +61,10 @@ function Deck() {
                         {/* a link to the home page */}
                         <li className="breadcrumb-item">
                             <Link to={"/"}>
-
+                                <i 
+                                className="fa fa-home" 
+                                aria-hidden="true">
+                                </i> 
                                 Home
                             </Link>
                         </li>
@@ -97,6 +104,9 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/edit`} 
                                 className="btn btn-secondary">
+                                    <i className="fa fa-edit" 
+                                    aria-hidden="true">
+                                    </i> 
                                 Edit
                             </Link>
 
@@ -104,6 +114,9 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/study`} 
                                 className="btn btn-primary ml-3">
+                                    <i className="fa fa-bookmark" 
+                                    aria-hidden="true">
+                                        </i> 
                                     Study
                             </Link>
 
@@ -111,15 +124,20 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/cards/new`} 
                                 className="btn btn-primary ml-3">
+                                    <i className="fa fa-plus" 
+                                    aria-hidden="true">
+                                    </i> 
                                     Add Cards
                             </Link>
 
                             {/* delete button */}
                             <button 
-                                onClick={deleteDeckHandle} 
+                                onClick={deleteHandler} 
                                 name="delete" value={id} 
-                                className="btn btn-danger ml-3">
-                                    Delete
+                                className="btn btn-danger ml-auto">
+                                    <i className="fa fa-trash" 
+                                    aria-hidden="true">
+                                    </i>
                             </button>
                        
                         </div>
@@ -158,14 +176,28 @@ function Deck() {
                                     <Link 
                                         to={`${url}/cards/${card.id}/edit`} 
                                         className="btn btn-secondary">
+                                            <i className="fa fa-edit" 
+                                            aria-hidden="true">
+                                            </i> 
                                         Edit
                                     </Link>
 
                                     <button 
-                                        onClick={deleteCardHandle} 
-                                        name="delete" 
-                                        value={id} 
-                                        className="btn btn-danger ml-3"> Delete
+                                        onClick={async () => {
+                                            if (window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")) {
+                                                await deleteCard(card.id)
+                                                updateDecks(-1)
+                                                history.go(0)
+                                        } else {
+                                            history.go(0)
+                                        } 
+                                    }} 
+                                        name="deleteCard" 
+                                        value={card.id} 
+                                        className="btn btn-danger ml-3">
+                                            <i className="fa fa-trash" 
+                                            aria-hidden="true">
+                                            </i>
                                     </button>
                                     
                                 </div>
@@ -177,4 +209,4 @@ function Deck() {
         )}
 }
 
-export default Deck
+export default Deck;
