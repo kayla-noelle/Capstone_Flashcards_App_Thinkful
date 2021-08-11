@@ -10,24 +10,20 @@ function EditCard(){
     const history =useHistory();
 
     useEffect(()=>{
-        const abortController = new AbortController()
         const cardInfo =async() => {
-            const response = await readCard(cardId, abortController.signal)
+            const response = await readCard(cardId)
             editCard(()=> response)
         }
         cardInfo()
-        return () => abortController.abort()
     }, [cardId]);
 
     useEffect(()=> {
-        const abortController =new AbortController()
 
         const deckInfo =async () => {
-            const response = await readDeck(deckId, abortController.signal)
+            const response = await readDeck(deckId)
             setDeck(()=> response)
         }
         deckInfo()
-        return () => abortController.abort()
     },[deckId]);
 
     const changeForm =({target})=>{

@@ -158,9 +158,6 @@ function Deck() {
                                     <Link 
                                         to={`${url}/cards/${card.id}/edit`} 
                                         className="btn btn-secondary">
-                                            <i className="fa fa-edit" 
-                                            aria-hidden="true">
-                                            </i> 
                                         Edit
                                     </Link>
 
@@ -168,7 +165,7 @@ function Deck() {
                                         onClick={deleteCardHandle} 
                                         name="delete" 
                                         value={id} 
-                                        className="btn btn-danger ml-3">
+                                        className="btn btn-danger ml-3"> Delete
                                     </button>
                                     
                                 </div>

@@ -33,7 +33,7 @@ function CreateDeck(){
             </nav>
             {/*form for creating a new deck*/}
             <form onSubmit={handleSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                     <h1>Create Deck</h1>
                     <label htmlFor="name">Name</label>
                     <input type="name" 
@@ -45,10 +45,10 @@ function CreateDeck(){
                     value={newDeck.name}
                     />
                 </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
+                <div className="form-group">
+                    <label htmlFor="description">Description</label>
                     <textarea 
-                    class="form-control" 
+                    className="form-control" 
                     id="description" 
                     rows="3" 
                     placeholder="Brief description of the deck"

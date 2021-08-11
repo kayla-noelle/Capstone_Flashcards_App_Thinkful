@@ -26,8 +26,7 @@ function Study() {
                     <ol className="breadcrumb">
 
                         <li className="breadcrumb-item">
-                            <Link to={"/"}><i className="fa fa-home" aria-hidden="true">
-                                </i> Home
+                            <Link to={"/"}> Home
                             </Link>
                         </li>
                         
