@@ -9,4 +9,4 @@ A full-stack application designed to test on us the front-end portion. Thinkful 
 ## What I've learned 
 This gave me a realistic insight on how to work with an existing database and how React in a full stack application works. This was more challenging than I expected because I had to make sure to create files with Links and nested Routers so the application was not overwhelmed.
 
-![Home View](/relative/Flashcard_home?raw=true "Home View")
+![Home View](/Desktop/Flashcard_home?raw=true "Home View")
