@@ -7,7 +7,7 @@ import { deleteDeck } from '../../utils/api/index.js'
 // create a function that retrieves an updated deck's id,
 // fetches it's card data, and sets the deck's useState to 
 // contain it's content
-function Deck({updateDecks}) {
+function Deck() {
     const [deck, setDeck] = useState([])
     const {deckId} = useParams()
     const history = useHistory()
@@ -26,21 +26,14 @@ function Deck({updateDecks}) {
 
     // create a handler for the delete button
     const deleteHandler = async () => {
-        // if the button is clicked and confirmed by the user, delete the deck using it's id
         if (window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")) {
           await deleteDeck(id)
-          // use updateDecks() to subtract it from the card deck
-          updateDecks(-1)
-          // redirect to the home page
           history.push('/')
-          // if the delete is not confirmed, leave the deck as is and remain on the same page
         } else {
             history.go(0)
         } 
     }
 
-    // if there is no deck or no cards, return the following webpage
-    // that displays "loading..."
     if (!deck || !cards) {
         return (
             <div className="spinner-border text-primary" role="status">
@@ -48,7 +41,6 @@ function Deck({updateDecks}) {
                    Loading...
                </span>
             </div>
-    // if a deck or cards are present, return a webpage with the following content
     )} else {
 
         return (
@@ -186,7 +178,6 @@ function Deck({updateDecks}) {
                                         onClick={async () => {
                                             if (window.confirm("Are you sure you want to delete this card? You will not be able to recover it.")) {
                                                 await deleteCard(card.id)
-                                                updateDecks(-1)
                                                 history.go(0)
                                         } else {
                                             history.go(0)
@@ -209,4 +200,4 @@ function Deck({updateDecks}) {
         )}
 }
 
-export default Deck;
+export default Deck

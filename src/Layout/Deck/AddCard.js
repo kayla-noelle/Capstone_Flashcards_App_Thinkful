@@ -8,14 +8,15 @@
      const [card, addCard] =useState( {front:"", back:"", deckId:""})
      const {deckId} =useParams()
 
-     useEffect(() =>{
-        
-         const deckInfo = async () => {
-             const response = await readDeck(deckId)
-             setDeck(() => response)
-         }
-         deckInfo()
-     }, [deckId])
+     useEffect(() => {
+
+        const deckInfo = async () => {
+            const response = await readDeck(deckId)
+            setDeck(() => response)
+        }
+        deckInfo()
+    }, [deckId])
+
      const handleChange=(event)=>{
         addCard({...card,[event.target.name]:event.target.value})
      }

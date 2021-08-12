@@ -14,6 +14,7 @@ function EditDeck(){
         }
         loadDeck()
 
+
     }, [deckId])
     
     const changeForm = (event) => {
@@ -36,7 +37,7 @@ function EditDeck(){
                         </li>
                         {/*let users know that they are on the current page*/}
                         <li className="breadcrumb-item">
-                            <Link to="{`/decks/${id}">{deck.name}</Link>
+                            <Link to="{`/decks/${id}`}">{deck.name}</Link>
                         </li>
                         <li className="breadcrumb-item">Edit Deck</li>
                     </ol>
@@ -66,7 +67,7 @@ function EditDeck(){
                         value={deck.description}
                         className="form-control" 
                         id="description"
-                        placeholder={deck.descriptio} 
+                        placeholder={deck.description} 
                         rows="4">
                         </textarea>
                     </div>

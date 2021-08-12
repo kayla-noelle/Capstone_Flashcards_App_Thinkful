@@ -3,11 +3,14 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import { updateCard, readDeck, readCard } from '../../utils/api/index.js'
 import CardForm from "./CardForm.js"
 
-function EditCard({updateDecks}) {
+function EditCard() {
+    
     const [deck, setDeck] = useState([])
     const [card, editCard] = useState({front: "", back: "", deckId: ""})
     const {deckId, cardId} = useParams()
     const history = useHistory()
+  
+
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -41,8 +44,7 @@ function EditCard({updateDecks}) {
     const submitForm = async (event) => {
         event.preventDefault()
         await updateCard(card)
-        history.push(`/decks/${deck.id}`)
-        updateDecks(1)
+        history.push(`/decks/${deckId}`)
     }
 
     return (
@@ -70,7 +72,7 @@ function EditCard({updateDecks}) {
 
                     {/* edit card */}
                     <li className="breadcrumb-item">
-                        Edit Card {cardId}
+                        Edit Card {card}
                     </li>
                 </ol>
 
@@ -82,7 +84,7 @@ function EditCard({updateDecks}) {
             <CardForm 
                 submitForm={submitForm} 
                 changeForm={changeForm} 
-                card={card} 
+                card={cardId} 
                 deckId={deckId} />
         </div>
     )
