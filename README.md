@@ -1,6 +1,6 @@
 # Capstone_Flashcards_App_Thinkful
 
-##Overview
+## Overview
 A React Project that reaches into backend JSON API server to retrieve information on decks and cards. You can create, read, update and delete decks and cards.
 
 ## Challenge
