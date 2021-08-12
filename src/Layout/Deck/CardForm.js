@@ -9,7 +9,7 @@ function CardForm({handleSubmit, handleChange, card, deckId}){
                 <label>Front</label>
                 <textarea
                 name="front"
-                value={CardForm.front}
+                value={card.front}
                 onChange ={handleChange}
                 id="front"
                 className="form-control"

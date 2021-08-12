@@ -4,13 +4,10 @@ import { updateCard, readDeck, readCard } from '../../utils/api/index.js'
 import CardForm from "./CardForm.js"
 
 function EditCard() {
-    
     const [deck, setDeck] = useState([])
     const [card, editCard] = useState({front: "", back: "", deckId: ""})
     const {deckId, cardId} = useParams()
     const history = useHistory()
-  
-
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -36,15 +33,15 @@ function EditCard() {
     }, [deckId])
 
 
-    const changeForm = ({ target }) => {
-        editCard({...card, [target.name]: target.value})
+    const handleChange = (event) => {
+        editCard({...card, [event.target.name]: event.target.value})
     }
     
 
-    const submitForm = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         await updateCard(card)
-        history.push(`/decks/${deckId}`)
+        history.push(`/decks/${deck.id}`)
     }
 
     return (
@@ -57,8 +54,6 @@ function EditCard() {
                         
                         {/* link to home page */}
                         <Link to={"/"}>
-                            <i className="fa fa-home" aria-hidden="true">
-                                </i> 
                                 Home
                         </Link>
                     </li>
@@ -72,7 +67,7 @@ function EditCard() {
 
                     {/* edit card */}
                     <li className="breadcrumb-item">
-                        Edit Card {card}
+                        Edit Card {cardId}
                     </li>
                 </ol>
 
@@ -82,9 +77,9 @@ function EditCard() {
                 <h1>Edit Card</h1>
             </div>
             <CardForm 
-                submitForm={submitForm} 
-                changeForm={changeForm} 
-                card={cardId} 
+                submitForm={handleSubmit} 
+                changeForm={handleChange} 
+                card={card} 
                 deckId={deckId} />
         </div>
     )

@@ -8,20 +8,20 @@ function EditDeck(){
     const {deckId} =useParams()
 
     useEffect(()=>{
+        const abortController = new AbortController()
         const loadDeck =async () => {
-            const response =await readDeck(deckId)
+            const response =await readDeck(deckId, abortController.signal)
             editDeck(() => response)
         }
         loadDeck()
-
-
+        return () => abortController.abort()
     }, [deckId])
     
-    const changeForm = (event) => {
+    const handleChange = ({event}) => {
         editDeck({...deck, [event.target.name]: event.target.value})
     }
     
-    const submitForm =async(event) => {
+    const handleSubmit =async(event) => {
         event.preventDefault()
         const response = await updateDeck(deck)
         history.push (`/decks.${response.id}`)
@@ -37,7 +37,7 @@ function EditDeck(){
                         </li>
                         {/*let users know that they are on the current page*/}
                         <li className="breadcrumb-item">
-                            <Link to="{`/decks/${id}`}">{deck.name}</Link>
+                            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
                         </li>
                         <li className="breadcrumb-item">Edit Deck</li>
                     </ol>
@@ -46,15 +46,15 @@ function EditDeck(){
                 <div className="row pl-3 pb-2">
                     <h1>Edit Deck</h1>
                 </div>
-                <form onSubmit={submitForm}>
+                <form onSubmit={handleSubmit}>
                     <div class="form-group">
                         <h1>Edit Deck</h1>
-                        <label for="name">Name</label>
+                        <label htmlFor="name">Name</label>
                         <input 
                         type="name"
                         name="name"
                         value={deck.name}
-                        onChange={changeForm}
+                        onChange={handleChange}
                         id="name" 
                         className="form-control" 
                         placeholder={deck.name}

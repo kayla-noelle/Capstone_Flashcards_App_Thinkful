@@ -46,8 +46,7 @@ function DeckList({deck, updateDecks}) {
                         name="delete" 
                         value={id} 
                         className="btn btn-danger ml-auto">
-                        <i className="fa fa-trash" aria-hidden="true">
-                        </i>
+                        Delete
                         </button>
                 </div>
             </div>

@@ -53,10 +53,7 @@ function Deck() {
                         {/* a link to the home page */}
                         <li className="breadcrumb-item">
                             <Link to={"/"}>
-                                <i 
-                                className="fa fa-home" 
-                                aria-hidden="true">
-                                </i> 
+
                                 Home
                             </Link>
                         </li>
@@ -70,10 +67,6 @@ function Deck() {
 
                 </nav>
                 
-
-                {/* a container holding the card deck, including their name,
-                description, a button to study it, a button to edit it, a 
-                button to add cards to the deck, and a button to delete it */}
 
                 <div className="card border-0 mb-4">
                     <div className="card-body">
@@ -96,9 +89,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/edit`} 
                                 className="btn btn-secondary">
-                                    <i className="fa fa-edit" 
-                                    aria-hidden="true">
-                                    </i> 
                                 Edit
                             </Link>
 
@@ -106,9 +96,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/study`} 
                                 className="btn btn-primary ml-3">
-                                    <i className="fa fa-bookmark" 
-                                    aria-hidden="true">
-                                        </i> 
                                     Study
                             </Link>
 
@@ -116,9 +103,6 @@ function Deck() {
                             <Link 
                                 to={`/decks/${id}/cards/new`} 
                                 className="btn btn-primary ml-3">
-                                    <i className="fa fa-plus" 
-                                    aria-hidden="true">
-                                    </i> 
                                     Add Cards
                             </Link>
 
@@ -127,9 +111,7 @@ function Deck() {
                                 onClick={deleteHandler} 
                                 name="delete" value={id} 
                                 className="btn btn-danger ml-auto">
-                                    <i className="fa fa-trash" 
-                                    aria-hidden="true">
-                                    </i>
+                                    Delete
                             </button>
                        
                         </div>
@@ -186,9 +168,7 @@ function Deck() {
                                         name="deleteCard" 
                                         value={card.id} 
                                         className="btn btn-danger ml-3">
-                                            <i className="fa fa-trash" 
-                                            aria-hidden="true">
-                                            </i>
+                                           Delete
                                     </button>
                                     
                                 </div>
@@ -200,4 +180,4 @@ function Deck() {
         )}
 }
 
-export default Deck
+export default Deck;
