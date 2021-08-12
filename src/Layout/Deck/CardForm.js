@@ -38,7 +38,7 @@ function CardForm({handleSubmit, handleChange, card, deckId}){
             <button
             type="submit"
             className="btn btn-primary"
-            ></button>
+            >Submit</button>
         </form>
     )
 }

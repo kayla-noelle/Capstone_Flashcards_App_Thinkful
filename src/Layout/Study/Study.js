@@ -41,13 +41,10 @@ function Study() {
                         </li>
                     </ol>
                 </nav>
-                
-                {/* title */}
+            
                 <div>
                     <h1>{deck.name}: Study</h1>
                 </div>
-
-                {/* card list */}
                 <CardList cards={deck.cards}/>
             </div>
         )

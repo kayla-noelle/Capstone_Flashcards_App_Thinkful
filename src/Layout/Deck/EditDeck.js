@@ -48,7 +48,6 @@ function EditDeck(){
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div class="form-group">
-                        <h1>Edit Deck</h1>
                         <label htmlFor="name">Name</label>
                         <input 
                         type="name"
@@ -74,8 +73,6 @@ function EditDeck(){
                     <Link to={`/decks/${deckId}`} name="cancel" className="btn btn-secondary mr-3">Cancel</Link>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
-                <Link to="/" className="btn btn-secondary mr-3">Cancel</Link>
-                <button className="btn btn-primary">Submit</button>
             </div>
         )
 }

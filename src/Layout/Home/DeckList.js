@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { deleteDeck } from '../../utils/api/index.js'
 
-function DeckList({deck, updateDecks}) {
+function DeckList({deck}) {
     // deck includes the following content
     const { id, name, description, cards } = deck
     const deckLength = cards.length
@@ -12,7 +12,6 @@ function DeckList({deck, updateDecks}) {
     const deleteHandler = async () => {
           if (window.confirm("Are you sure you want to delete this deck? You will not be able to recover it.")) {
             await deleteDeck(id)
-            updateDecks(-1)
             history.go(0)
           } else {
               history.go(0)
@@ -30,14 +29,10 @@ function DeckList({deck, updateDecks}) {
                 <p className="card-text">{description}</p>
                 <div className="row px-3">
                     <Link to={`/decks/${id}`} className="btn btn-secondary">
-                            <i className="fa fa-eye" aria-hidden="true">
-                            </i> 
                         View
                     </Link>
 
                     <Link to={`/decks/${id}/study`} className="btn btn-primary ml-3">
-                        <i className="fa fa-bookmark" aria-hidden="true">
-                        </i> 
                         Study
                     </Link>
 

@@ -4,9 +4,6 @@ import { deleteCard, readDeck } from '../../utils/api/index.js'
 import { deleteDeck } from '../../utils/api/index.js'
 
 
-// create a function that retrieves an updated deck's id,
-// fetches it's card data, and sets the deck's useState to 
-// contain it's content
 function Deck() {
     const [deck, setDeck] = useState([])
     const {deckId} = useParams()
